@@ -1,77 +1,202 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Readme</title>
-  <style>
-.selector{color:red;}
-.heading{
-background-color:#D8E0E2;
-background-repeat:repeat-x;
-border-bottom:1px solid #FFFFFF;
-border-top:1px solid #FFFFFF;
-color:black;
-font-family:Verdana,Arial,Helvetica,sans-serif;
-font-size:16px;
-font-weight:bold;
-letter-spacing:1.1px;
-margin:15px 0 10px;
-padding:3px 10px;
-text-align:center;
-}
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+  <title>ArcGIS Web Application</title>
+  <link rel="shortcut icon" href="images/shortcut.ico">
+  <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css"  href="jimu.js/css/jimu-ie.css" />
+  <![endif]-->
+  <style type="text/css">
+    * {
+      box-sizing: border-box;
+    }
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    #main-loading {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      overflow: hidden;
+    }
+    #main-page {
+      display: none;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    #jimu-layout-manager {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+
+    #unsupported-browser-message{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: rgba(0,0,0,0.6);
+
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      .browser-message {
+        width: 700px;
+        max-width: 100%;
+        max-height: 100%;
+        overflow-y: auto;
+        background: #fff;
+        color: #333;
+        text-align: center;
+        padding: 1rem;
+      }
+
+      .browser-button-container {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .browser-button-container button{
+        cursor: pointer;
+        border: none;
+        background: transparent;
+      }
+
+      .browser-button-container img{
+        width: 20px;
+        height: 20px;
+      }
+
+      .browser-message-title {
+        color: #002625;
+        font-weight: 300;
+        margin: 1.5rem auto;
+        font-size: 2.5rem;
+        line-height: 2rem;
+      }
+
+      .browser-message-content {
+        color: #3d6665;
+        font-weight: 400;
+        font-size: 1.1rem;
+        line-height: 2rem;
+      }
+
+      #browser-logo-list {
+        display: flex;
+        align-items: center;
+        margin: 2rem 1rem 0 1rem;
+        padding: 0;
+      }
+
+      .browser-logo {
+        display: inline-block;
+        margin: 0 auto;
+      }
+
+      .browser-logo img {
+        width: 3rem;
+        height: auto;
+      }
+
+      @media (min-width:700px) {
+        .browser-logo img {
+          width: 4rem;
+        }
+      }
   </style>
+  <link rel="stylesheet" type="text/css" href="configs/loading/loading.css" />
+  <script>
+    /*******************************
+     * This is the function you can modify to customize the loading page
+     * This function will be invoked when one resource is loaded.
+     ********************************/
+    // var progress;
+    // function loadingCallback(url, i, count) {
+    // 	var loading = document.getElementById('main-loading-bar');
+    // 	loading.setAttribute('title', url);
+    //   if(!progress){
+    //     progress = document.createElement('div');
+    //     progress.setAttribute('class', 'loading-progress');
+    //     loading.appendChild(progress);
+    //   }
+    //   progress.style.width = (((i - 1)/count) * 100) + '%';
+    // }
+  </script>
+</head>
 
- </head>
+<body class="claro jimu-main-font">
 
-<body>
-<h3>Deploy the app</h3>
-<p>Do the following to deploy the app on your server:</p>
-<ul>
-	<ol>
-	  <li>Unzip the downloaded app.</li>
-	  <li>Deploy it on your web server.</li>
-	  <li>Browse to the directory where the app from step 2 is locally hosted and open the app <strong>config.json</strong> file.</li>
-	  <li>Add a proxy to your app. Refer to <a
-href="http://doc.arcgis.com/en/web-appbuilder/manage-apps/use-proxy.htm">Use proxy</a> for details. <br>
-	  <i>*Important: Make sure that the proxy applied to your app works as expected. The map or widgets might fail if the proxy is set inappropriately.</i></li>
-	  <li>Add and register the app. Refer to <a href="http://doc.arcgis.com/en/arcgis-online/share-maps/add-items.htm"> Add apps </a> and <a href="http://doc.arcgis.com/en/arcgis-online/share-maps/add-items.htm#REG_APP">Register your app </a> for details.</li>
-	  <li>Copy and paste the AppID to the appId property in the <strong>config.json</strong> file. <br>
-	  <i>Note: Skip step 5 and 6 if the app connects to a web-tire authenticated portal.</i></li>
-	  <li>Save the <strong>config.json</strong> file. </li>
-	  <li>View the locally hosted app in your browser.</li>
-	</ol>
-</ul>
+  <div id="main-loading">
 
-<h3>Customize the app</h3>
-<p>Use the <a href="https://developers.arcgis.com/web-appbuilder/guide/create-import-app.htm#ESRI_SECTION1_CD827E29515941F490AF21F6F2404E35">Import</a> function in <a href="https://developers.arcgis.com/web-appbuilder/">Developer Edition</a> to import the downloaded ZIP file, then customize it in the builder.</p>
-<p>Optionally, do the following to customize the application by editing JSON files directly:</p>
-<ul>
-  <li>Add custom widgets
-    <ol>
-      <li>Put your custom widget in the <strong>widgets</strong> folder.</li>
-      <li>Add widget into the app's <strong>config.json</strong>.<br>
-      The example below uses the Demo widget. Add it into the <strong>config.json</strong> file<br>
-        <p>{<br>
-		&nbsp;&nbsp;&nbsp;&nbsp;"uri": "widgets/Demo/Widget"<br>
-		},</p>
-      </li>
-    </ol>
-  </li>
-  <li>Configure the app and widgets. Refer to <a href="https://developers.arcgis.com/web-appbuilder/api-reference/app-configuration.htm">JSON configuration reference</a>.</li>
-  <li>Reference preferred ArcGIS API for JavaScript. Refer to <a href="https://developers.arcgis.com/web-appbuilder/sample-code/change-url-of-arcgis-api-for-javascript.htm">Change URL of ArcGIS API for JavaScript</a>.</li>
-</ul>
-<h3>Browser requirements</h3>
-<p>Supported browsers for deployed applications*:</p>
-<ul>
-  <li>Chrome</li>
-  <li>Firefox</li>
-  <li>Safari 3+</li>
-  <li>Edge</li>
-  <li>Internet Explorer 11. Internet Explorer 10 and lower is not supported.</li>
-</ul>
-<p>*For 3D apps, refer to the <a href="https://developers.arcgis.com/javascript/beta/guide/system-requirements/index.html">system requirements</a> of ArcGIS API for JavaScript 4.x for details. </p>
-<h3>ArcGIS API for JavaScript requirements</h3>
-<p>Recommend <a href="https://developers.arcgis.com/javascript/jshelp/whats_new.html">the latest version</a> of ArcGIS JavaScript API for 2D apps, and <a href="https://developers.arcgis.com/javascript/">version 4.x</a> for 3D apps.</p>
+    <!-- This is section you can modify to customize the loading page -->
+    <div id="app-loading"></div>
+    <div id="loading-gif"></div>
+
+    <!-- //////////////////    END    ////////////////////////////// -->
+    <!--[if IE 8]>
+    <div id="ie-note" style="display:none;">
+      <div class="hint-title">Error</div>
+      <div class="hint-img">Your browser is currently not supported.</div>
+      <p class="hint-text">
+        <span>
+          Please note that creating presentations is not supported in Internet Explorer versions 6, 7.
+        </span>
+        <br>
+        <span>
+          We recommend upgrading to the latest Internet Explorer, Google Chrome, or Firefox.
+        </span>
+        <br>
+        <span>
+          If you are using IE 8 or later, make sure you turn off "Compatibility View".
+        </span>
+      </p>
+    </div>
+    <![endif]-->
+  </div>
+  <div id="main-page" role="application">
+    <div class="trapLinkNode" tabindex="0"></div>
+    <div id="jimu-layout-manager"></div>
+    <div id="skipContainer"></div>
+    <div class="trapLinkNode lastTrapLinkNode" tabindex="0"></div>
+  </div>
+
+  <div id="unsupported-browser-message">
+    <div class="browser-message">
+      <div class="browser-button-container">
+        <button><img src="./browser-message/close.png"></button>
+      </div>
+      <h1 class="browser-message-title" id="message-title"></h1>
+      <p class="browser-message-content" id="message-content-1"></p>
+      <p class="browser-message-content" id="message-content-2"></p>
+      <p class="browser-message-content" id="message-content-3"></p>
+      <ul id="browser-logo-list">
+        <li class="browser-logo"><a href="https://www.google.com/chrome/"><img alt="Chrome" src="./browser-message/chrome.png"></a></li>
+        <li class="browser-logo"><a href="https://www.mozilla.org/firefox/"><img alt="Firefox" src="./browser-message/firefox.png"></a></li>
+        <li class="browser-logo"><a href="https://www.apple.com/safari/"><img alt="Safari" src="./browser-message/safari.png"></a></li>
+        <li class="browser-logo"><a href="https://www.microsoft.com/edge"><img alt="Edge" src="./browser-message/edge.png"></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="./service-worker-registration.js"></script>
+  <script type="text/javascript" src="env.js"></script>
+  <script type="text/javascript" src="browser-message/limited-unsupported-browser.js"></script>
+  <script type="text/javascript" src="simpleLoader.js"></script>
+  <script type="text/javascript" src="init.js"></script>
 </body>
+
 </html>
